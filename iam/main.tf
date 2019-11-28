@@ -1,9 +1,9 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "ap-southeast-1"
 }
 
 resource "aws_iam_user" "my-test-user" {
-  name  = "${element(var.username,count.index)}"
+  name  = "${element(var.username, count.index)}"
   count = "${length(var.username)}"
 }
 

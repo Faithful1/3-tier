@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "ap-southeast-1"
 }
 
 resource "aws_db_instance" "my-test-sql" {

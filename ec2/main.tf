@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "ap-southeast-1"
 }
 
 data "aws_availability_zones" "available" {}
@@ -39,7 +39,7 @@ resource "aws_instance" "my-test-instance" {
   instance_type          = "${var.instance_type}"
   key_name               = "${aws_key_pair.mytest-key.id}"
   vpc_security_group_ids = ["${var.security_group}"]
-  subnet_id              = "${element(var.subnets, count.index )}"
+  subnet_id              = "${element(var.subnets, count.index)}"
   user_data              = "${data.template_file.init.rendered}"
 
   tags = {

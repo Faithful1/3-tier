@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "ap-southeast-1"
 }
 
 resource "aws_ec2_transit_gateway" "my-test-tgw" {
@@ -26,7 +26,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "my-test-transit-gateway-attac
     "${var.public_subnet2}",
   ]
 
-  tags =  {
+  tags = {
     Name = "my-test-tgw-vpc-attachment"
   }
 }

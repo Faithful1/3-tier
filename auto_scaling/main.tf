@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "ap-southeast-1"
 }
 
 resource "aws_launch_configuration" "my-test-launch-config" {
@@ -22,7 +22,7 @@ resource "aws_launch_configuration" "my-test-launch-config" {
 
 resource "aws_autoscaling_group" "example" {
   launch_configuration = "${aws_launch_configuration.my-test-launch-config.name}"
-  vpc_zone_identifier  = ["${var.subnet1}","${var.subnet2 }"]
+  vpc_zone_identifier  = ["${var.subnet1}", "${var.subnet2}"]
   target_group_arns    = ["${var.target_group_arn}"]
   health_check_type    = "ELB"
 

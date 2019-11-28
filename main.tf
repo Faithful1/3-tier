@@ -1,5 +1,6 @@
 provider "aws" {
-  region = "us-west-2"
+  region                  = "ap-southeast-1"
+  shared_credentials_file = "~/.aws/credentials"
 }
 
 module "vpc" {
@@ -22,8 +23,6 @@ module "alb" {
   source = "./alb"
   vpc_id = "${module.vpc.vpc_id}"
 
-  /*  instance1_id = "${module.ec2.instance1_id}"
-      instance2_id = "${module.ec2.instance2_id}"*/
   subnet1 = "${module.vpc.subnet1}"
 
   subnet2 = "${module.vpc.subnet2}"
@@ -39,7 +38,7 @@ module "auto_scaling" {
 
 module "sns_topic" {
   source       = "./sns"
-  alarms_email = "plakhera2019@gmail.com"
+  alarms_email = "faithfulanere@gmail.com"
 }
 
 module "cloudwatch" {
@@ -65,28 +64,6 @@ module "route53" {
 
 module "iam" {
   source   = "./iam"
-  username = ["plakhera1", "prashant", "pankaj"]
+  username = ["faithful", "faithful", "faithful"]
 }
 
-module "s3" {
-  source         = "./s3"
-  s3_bucket_name = "21-days-of-aws-using-terraform"
-}
-
-module "cloudtrail" {
-  source          = "./cloudtrail"
-  cloudtrail_name = "my-demo-cloudtrail-terraform"
-  s3_bucket_name  = "s3-cloudtrail-bucket-with-terraform-code"
-}
-
-module "transit_gateway" {
-  source         = "./transit_gateway"
-  vpc_id         = "${module.vpc.vpc_id}"
-  public_subnet1 = "${module.vpc.subnet1}"
-  public_subnet2 = "${module.vpc.subnet2}"
-}
-
-module "kms" {
-  source   = "./kms"
-  user_arn = "${module.iam.aws_iam_user}"
-}
