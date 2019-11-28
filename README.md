@@ -1,1 +1,1 @@
-# 21_days_of_aws_using_terraform
+# 3-tierapp_aws_terraform
